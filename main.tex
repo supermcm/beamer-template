@@ -1,0 +1,32 @@
+\documentclass[red]{beamer}
+\usepackage{beamerthemesplit}
+\usepackage{beamerthemeshadow}
+\usepackage{animate}
+\usepackage{graphics}
+\usepackage{overpic}
+\usepackage{matlab}
+\usepackage{tikz}
+
+\graphicspath{{figures/}}
+\usetheme{Warsaw}
+%\usecolortheme{sidebartab}
+%\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+%\raggedright
+
+\begin{document}
+\title{latex beamer template for presentation}
+\subtitle{supermcm}
+\institute[Imech, CAS]{Institute of Mechanics, CAS}
+\author{Zhou Lvwen}
+\date{\today}
+\frame[plain]{\titlepage}
+\frame{\tableofcontents}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{./sections/Introduction}
+\input{./sections/Animate}
+\input{./sections/Matlab}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}

@@ -1,0 +1,24 @@
+\section{MatLab Scripts}
+% ------------------------------  MatLab Scripts ------------------------------
+\begin{frame}[fragile,plain]
+\frametitle{Matlab Scripts}
+\begin{block}{ns.m}
+\begin{matlab}
+\mline{ 2}{function flux = ns(rho,p,L,tmax) % aaa}
+\mline{ 3}{ncar = round(L*rho);                % bbb}
+\mline{ 4}{x = sort(randperm(L, ncar));        % ccc}
+\mline{ 5}{vmax = 5;                           % ddd}
+\mline{ 5}{v = vmax * ones(1, ncar);           % eee}
+\mline{ 6}{for t = 1:tmax    }
+\mline{ 7}{    v = min(v+1, vmax);             % fff}
+\mline{ 8}{    gaps = gaplength(x,L,ncar);     % hhh}
+\mline{ 8}{    v = min(v, gaps-1);             % iii}
+\mline{ 9}{    v = max(v- (rand(1,ncar)<p), 0);% 555}
+\mline{10}{    x = x + v;                      % 666}
+\mline{11}{    x(x>L) = x(x>L) - L;            % 888}
+\mline{12}{    flux = flux + sum(v)/L;         % 999}
+\mline{ 6}{end               }
+\mline{12}{flux = flux / tmax;                 }
+\end{matlab}
+\end{block}
+\end{frame}

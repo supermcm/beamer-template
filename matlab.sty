@@ -1,0 +1,56 @@
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{matlab}[2015/08/27 matlab]
+\RequirePackage{anyfontsize}
+\RequirePackage[numbered]{matlab-prettifier}
+\RequirePackage{calc}
+\RequirePackage{pgfplots}
+\RequirePackage{xifthen}
+\RequirePackage{ocg-p}
+\RequirePackage{tikz}
+%\def\lstbasicfont{\fontfamily{pcr}\selectfont\footnotesize}
+
+\newcommand{\mcode}[1]{\lstinline[style=Matlab-editor,basicstyle=\ttfamily,keepspaces=true]!#1!}
+
+
+\newcounter{mcounter}
+\makeatletter
+\renewcommand\themcounter{\two@digits{\value{mcounter}}}
+\makeatother
+\newcommand\midc{\themcounter\stepcounter{mcounter}}
+\newcommand{\mline}[2]{{\footnotesize\textcolor{gray}{\alert<#1>{\midc}}}\footnotesize\lstinline[style=Matlab-editor,basicstyle=\ttfamily,keepspaces=true]!\ #2!}
+
+\newenvironment{matlab}[1][1]{
+\setcounter{mcounter}{#1}
+\begin{semiverbatim}
+}{
+\end{semiverbatim}
+}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\prompt} {{\scriptsize\hphantom{$f_x$}\vphantom{$f_x>>$}}{\tiny $\,>>\;$}}
+\newcommand{\frompt} {{\scriptsize$f_x$\vphantom{$>>$}}{\tiny $\,>>\;$}}
+
+\newcommand{\fprompt}{{\fontsize{3.75pt}{3.75pt}\selectfont$f_x >>\;$}}
+\newcommand{\pprompt}{{\fontsize{3.75pt}{3.75pt}\selectfont$\hphantom{f_x} >>\;$}}
+
+\newcommand{\commandshow}[1]{
+\begin{tikzpicture}
+\def \xmin{0}; \def \ymin{0};
+\def \xmax{\textwidth}; \def \ymax{6.75};
+\def \dy {0.3}; \def \dx{0.3};
+\begin{scope}
+\fill[gray!20] (\xmin,\ymin) rectangle(\xmax,\ymax);
+\draw[draw=gray!10,fill=white] (\xmin+\dx, \ymin) rectangle(\xmax,\ymax-\dy);
+\draw[draw=black!60,top color=yellow!20!gray!15,bottom color=gray!40] (\xmin,\ymax-\dy) 
+
+node[black!70,above right=-3pt,font=\tiny] {Command Window} rectangle(\xmax,\ymax);
+\draw[draw=black!60] (\xmin,\ymin) rectangle(\xmax,\ymax);
+\end{scope}
+
+\begin{scope}[font=\ttfamily\scriptsize\selectfont]
+\foreach \stri/\i/\ts/\te in {#1}{
+   \draw<\ts-\te> (\xmin, \ymax-0.6*\dy-\i*\dy) node[right=-2pt] {\stri};
+}
+\end{scope}
+\end{tikzpicture}}
